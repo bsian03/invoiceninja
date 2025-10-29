@@ -51,7 +51,7 @@ class Office365MailTransport extends AbstractTransport
 
         try {
             $graphMessage = $graph->createRequest('POST', '/users/'.$symfony_message->getFrom()[0]->getAddress().'/sendmail')
-                ->attachBody(base64_encode($bcc_list.$message->toString()))
+                ->attachBody(base64_encode($bcc_list.$symfony_message->toString()))
                 ->addHeaders(['Content-Type' => 'text/plain'])
                 ->setReturnType(\Microsoft\Graph\Model\Message::class)
                 ->execute();
@@ -61,7 +61,7 @@ class Office365MailTransport extends AbstractTransport
 
             try {
                 $graphMessage = $graph->createRequest('POST', '/users/'.$symfony_message->getFrom()[0]->getAddress().'/sendmail')
-                    ->attachBody(base64_encode($bcc_list.$message->toString()))
+                    ->attachBody(base64_encode($bcc_list.$symfony_message->toString()))
                     ->addHeaders(['Content-Type' => 'text/plain'])
                     ->setReturnType(\Microsoft\Graph\Model\Message::class)
                     ->execute();
